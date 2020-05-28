@@ -2,6 +2,7 @@ import * as React from "react"
 import { Route, Switch, Link, RouteComponentProps, withRouter } from "react-router-dom"
 import { routers, flatRouters, IRouter } from "@/routers/index"
 
+import AppContext, { appdata } from "@/context/index"
 import classNames from "classnames"
 
 import "./style.scss"
@@ -21,8 +22,6 @@ const renderMenu = (routers: IRouter[] = [], pathname: string = ""): React.React
       )
     }
 
-    console.log(router.path && router.path === pathname)
-
     const classStyles = classNames("nav-link", {
       "active": router.path && router.path === pathname
     })
@@ -41,44 +40,47 @@ const renderRouter = (flatRouters: IRouter[] = []): React.ReactNode => {
 }
 
 
+
 interface IProps extends RouteComponentProps { }
 
 const App: React.FC<IProps> = (props) => {
   const { location: { pathname = "" } } = props
   return (
-    <div>
-      <nav className="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow">
-        <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
-          React Hook
+    <AppContext.Provider value={appdata}>
+      <div>
+        <nav className="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow">
+          <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+            React Hook
         </a>
-        <ul className="navbar-nav px-3">
-          <li className="nav-item text-nowrap">
-            <a className="nav-link" href="#">
-              Hook
+          <ul className="navbar-nav px-3">
+            <li className="nav-item text-nowrap">
+              <a className="nav-link" href="#">
+                Hook
             </a>
-          </li>
-        </ul>
-      </nav>
+            </li>
+          </ul>
+        </nav>
 
-      <div className="container-fluid">
-        <div className="row">
-          <nav className="col-md-2 d-none d-md-block bg-light sidebar">
-            <div className="sidebar-sticky">
-              {renderMenu(routers, pathname)}
-            </div>
-          </nav>
+        <div className="container-fluid">
+          <div className="row">
+            <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+              <div className="sidebar-sticky">
+                {renderMenu(routers, pathname)}
+              </div>
+            </nav>
 
-          <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 className="h2">Dashboard</h1>
-            </div>
-            <Switch>
-              {renderRouter(flatRouters)}
-            </Switch>
-          </main>
+            <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
+              <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 className="h2">Dashboard</h1>
+              </div>
+              <Switch>
+                {renderRouter(flatRouters)}
+              </Switch>
+            </main>
+          </div>
         </div>
       </div>
-    </div>
+    </AppContext.Provider>
   )
 }
 

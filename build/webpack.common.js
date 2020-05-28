@@ -23,7 +23,9 @@ module.exports = {
     alias: {
       "@/": path.resolve(__dirname, "../src"),
       "@/pages": path.resolve(__dirname, "../src/pages"),
-      "@/routers": path.resolve(__dirname, "../src/routers")
+      "@/routers": path.resolve(__dirname, "../src/routers"),
+      "@/redurces": path.resolve(__dirname, "../src/redurces"),
+      "@/context": path.resolve(__dirname, "../src/context")
     }
   },
 

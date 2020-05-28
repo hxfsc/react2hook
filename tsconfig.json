@@ -17,6 +17,8 @@
       "@/*": ["src*"],
       "@/routers*": ["src/routers*"],
       "@/pages*": ["src/pages/*"],
+      "@/redurces*": ["src/redurces/*"],
+      "@/context*": ["src/context/*"],
     }
   },
   "exclude": ["node_modules", "dist"],
