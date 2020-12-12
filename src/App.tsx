@@ -2,7 +2,7 @@ import * as React from "react"
 import { Route, Switch, Link, RouteComponentProps, withRouter } from "react-router-dom"
 import { routers, flatRouters, IRouter } from "@/routers/index"
 
-import AppContext, { appdata } from "@/context/index"
+
 import classNames from "classnames"
 
 import "./style.scss"
@@ -46,8 +46,7 @@ interface IProps extends RouteComponentProps { }
 const App: React.FC<IProps> = (props) => {
   const { location: { pathname = "" } } = props
   return (
-    <AppContext.Provider value={appdata}>
-      <div>
+    <div>
         <nav className="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow">
           <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
             React Hook
@@ -80,7 +79,6 @@ const App: React.FC<IProps> = (props) => {
           </div>
         </div>
       </div>
-    </AppContext.Provider>
   )
 }
 

@@ -1,8 +1,8 @@
 import * as React from "react"
 
 
-export const appdata = {
-  title: "context"
+const appdata = {
+  title: "useContext"
 }
 
 const AppContext = React.createContext(appdata)
